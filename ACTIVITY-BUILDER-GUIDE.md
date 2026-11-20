@@ -1,4 +1,4 @@
-# Ilovelyrics — Activity Builder quick guide
+# We Love Lyrics — Activity Builder quick guide
 
 Songs added in Creator Studio are stored in this browser's localStorage. Each song has six activity slots. You can enable the activity and enter exercises as JSON arrays. Leave the exercise box empty if you have not prepared any questions yet. Export the custom song catalog to share the data with another browser or to use it for the project hand-in.
 
