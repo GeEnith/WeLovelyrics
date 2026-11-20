@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn real English through music with listening challenges, expressions, and flashcards.">
+  <title>Ilovelyrics — Learn English through music</title>
+  <link rel="stylesheet" href="style.css?v=creator-layout-2">
+
+  <style id="creator-studio-layout-fix">
+    /* Scoped Creator Studio layout override: independent of generic label/form rules. */
+    #creatorView .creator-form { display:block; width:100%; min-width:0; overflow:hidden; }
+    #creatorView .creator-form .song-form-grid { display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 18px; align-items:start; width:100%; }
+    #creatorView .creator-form .song-form-grid label { display:flex !important; flex-direction:column; align-items:stretch; gap:7px; min-width:0; width:100%; font-size:12px; font-weight:700; line-height:1.4; }
+    #creatorView .creator-form .song-form-grid .form-full { grid-column:1/-1; }
+    #creatorView .creator-form .song-form-grid input, #creatorView .creator-form .song-form-grid select, #creatorView .creator-form .song-form-grid textarea { display:block !important; width:100% !important; max-width:100%; min-width:0; box-sizing:border-box; border:1px solid var(--line); border-radius:11px; background:var(--surface2); color:var(--text); padding:11px 12px; font:500 13px 'DM Sans',sans-serif; }
+    #creatorView .creator-form .song-form-grid input, #creatorView .creator-form .song-form-grid select { height:43px; }
+    #creatorView .creator-form .song-form-grid textarea { min-height:120px; resize:vertical; line-height:1.55; }
+    #creatorView .creator-form #creatorLyrics { min-height:230px; }
+    #creatorView .creator-form #creatorExpressions { min-height:160px; }
+    #creatorView .creator-form .activity-builder { display:block; width:100%; min-width:0; box-sizing:border-box; margin:24px 0 18px; padding:clamp(14px,2vw,22px); border-radius:18px; }
+    #creatorView .creator-form .activity-config { display:grid; grid-template-columns:minmax(0,1fr); gap:10px; width:100%; min-width:0; box-sizing:border-box; padding:15px; margin:12px 0; }
+    #creatorView .creator-form .activity-config .activity-toggle { display:flex !important; flex-direction:row; align-items:center; gap:10px; width:100%; }
+    #creatorView .creator-form .activity-config textarea { display:block !important; width:100% !important; max-width:100%; min-width:0; box-sizing:border-box; min-height:100px; }
+    #creatorView .creator-form .song-form-actions { display:flex; justify-content:flex-end; align-items:center; flex-wrap:wrap; gap:10px; width:100%; }
+    #creatorView .creator-list-card { display:block; width:100%; min-width:0; box-sizing:border-box; overflow:hidden; }
+    @media(max-width:760px){ #creatorView .creator-form .song-form-grid { grid-template-columns:minmax(0,1fr) !important; } #creatorView .creator-form .song-form-grid .form-full { grid-column:auto; } }
+  </style>
+
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#home"><span class="brand-mark">♫</span><span>Ilovelyrics<span class="brand-dot">.</span></span></a>
+      <div class="nav-label">STUDY SPACE</div>
+      <nav class="nav-links">
+        <button class="nav-link active" data-view="home"><span>⌂</span> Home</button>
+        <button class="nav-link" data-view="library"><span>▤</span> Song library</button>
+        <button class="nav-link" data-view="challenge"><span>✎</span> Lyrics challenge</button>
+        <button class="nav-link" data-view="musicpause"><span>♫</span> Music Pause</button>
+        <button class="nav-link" data-view="flashcards"><span>▣</span> Flashcards <span class="nav-count" id="flashNavCount">0</span></button>
+        <button class="nav-link" data-view="creator"><span>✦</span> Creator Studio</button>
+      </nav>
+      <div class="nav-label playlist-label">YOUR LEARNING</div>
+      <div class="sidebar-note"><div class="note-icon">✦</div><p>Small steps, real English.</p><span>Keep your listening streak going.</span></div>
+      <div class="sidebar-bottom"><span class="online-dot"></span> Your progress is saved locally</div>
+    </aside>
+
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">♫</span> Ilovelyrics<span class="brand-dot">.</span></div>
+        <div class="top-progress"><span class="top-progress-label">YOUR PROGRESS</span><div class="mini-track"><div id="topProgressFill"></div></div><span id="topProgressText">0% complete</span></div>
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">☼</button>
+      </header>
+
+      <section class="view active" id="homeView">
+        <div class="welcome-row"><div><p class="eyebrow">YOUR ENGLISH, ON REPEAT</p><h1>Learn English.<br><span>Feel the music.</span></h1><p class="welcome-sub">A little listening today goes a long way.</p></div><div class="hero-art"><div class="disc disc-back"></div><div class="disc disc-front"><span>♫</span></div><div class="art-orbit"></div></div></div>
+        <div class="stats-grid">
+          <div class="stat-card"><span class="stat-icon green">♫</span><div class="stat-value" id="statSongs">0</div><div class="stat-label">Songs completed</div></div>
+          <div class="stat-card"><span class="stat-icon violet">✧</span><div class="stat-value" id="statExpressions">0</div><div class="stat-label">Expressions learned</div></div>
+          <div class="stat-card"><span class="stat-icon orange">◷</span><div class="stat-value" id="statCards">0</div><div class="stat-label">Cards mastered</div></div>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p><h2>Made for your ears</h2></div><button class="text-button" data-go="library">Explore library ↗</button></div>
+        <div class="featured-grid" id="featuredSongs"></div>
+        <div class="section-heading compact"><div><p class="eyebrow">YOUR STUDY TOOLS</p><h2>Build your English</h2></div></div>
+        <div class="tool-grid"><button class="tool-card" data-go="library"><span class="tool-emoji">🎧</span><strong>Listening practice</strong><span>Train your ear with music</span><span class="tool-arrow">↗</span></button><button class="tool-card" data-go="musicpause"><span class="tool-emoji">♫</span><strong>Music Pause</strong><span>Listen, pause and choose the missing word</span><span class="tool-arrow">↗</span></button><button class="tool-card" data-go="flashcards"><span class="tool-emoji">🗂️</span><strong>Expression flashcards</strong><span>Review what you've learned</span><span class="tool-arrow">↗</span></button></div>
+      </section>
+
+
+      <section class="view" id="libraryView">
+        <div class="page-heading"><p class="eyebrow">THE PLAYLIST IS YOUR CLASSROOM</p><h1>Song library</h1><p>Find a song. Discover how English really works.</p></div>
+        <div class="custom-song-panel">
+          <button class="custom-song-toggle" id="toggleSongForm">＋ Add your own song</button>
+          <div class="custom-song-form hidden" id="customSongForm">
+            <p class="eyebrow">YOUR MUSIC, YOUR STUDY</p><h2>Create a song lesson</h2>
+            <p class="form-help">Paste lyric lines in pairs using <code>English | Spanish</code>, one line per pair. Only add lyrics you have permission to use.</p>
+            <div class="song-form-grid">
+              <label>Song title<input id="customTitle" required placeholder="Song title"></label>
+              <label>Artist<input id="customArtist" required placeholder="Artist name"></label>
+              <label>English level<select id="customLevel"><option>B1</option><option>B2</option><option>C1</option></select></label>
+              <label>Topic<select id="customTopic"><option>Idioms</option><option>Phrasal verbs</option><option>Slang</option><option>Grammar</option><option>Vocabulary</option></select></label>
+              <label class="form-full">YouTube link<input id="customYoutube" placeholder="https://youtube.com/watch?v=... (optional)"></label>
+              <label class="form-full">Lyrics (English | Spanish)<textarea id="customLyrics" rows="7" placeholder="I miss the summer days | Extraño los días de verano
+I wish we could go back | Ojalá pudiéramos volver"></textarea></label>
+              <label class="form-full">Expressions (one per line: phrase | literal | meaning | pronunciation | register | example)<textarea id="customExpressions" rows="4" placeholder="go back | volver atrás | regresar a un momento anterior | /ɡoʊ bæk/ | Phrasal verb | I want to go back to the beginning"></textarea></label>
+            </div>
+            <div class="song-form-actions"><button class="secondary-button" id="cancelSongForm">Cancel</button><button class="primary-button" id="saveCustomSong">Save song</button></div>
+          </div>
+        </div>
+        <div class="filters"><div class="search-wrap"><span>⌕</span><input type="search" id="searchInput" placeholder="Search songs, artists, expressions..."></div><select id="levelFilter"><option value="all">All levels</option><option value="B1">B1 · Intermediate</option><option value="B2">B2 · Upper-intermediate</option><option value="C1">C1 · Advanced</option></select><select id="topicFilter"><option value="all">All topics</option><option value="Idioms">Idioms</option><option value="Phrasal verbs">Phrasal verbs</option><option value="Slang">Slang</option><option value="Grammar">Grammar</option></select></div>
+        <div class="library-grid" id="libraryGrid"></div>
+      </section>
+
+
+      <section class="view" id="lessonView">
+        <button class="back-button" id="backToLibrary">← Song library</button>
+        <div class="lesson-layout">
+          <div class="lesson-main">
+            <div class="lesson-title-row"><div><div class="tag-row" id="lessonTags"></div><h1 id="lessonTitle"></h1><p id="lessonArtist" class="muted"></p></div><button id="completeSongBtn" class="complete-button">✓ Mark complete</button></div>
+            <div class="player-card"><div class="video-wrap"><div id="ytPlayer"></div><div id="videoFallback" class="video-fallback"><div class="fallback-icon">▶</div><p>Video player loads here</p><span>If the video is unavailable, try opening it on YouTube.</span></div></div><div class="player-controls"><span class="player-label">PLAYBACK SPEED</span><div class="speed-buttons"><button data-speed="0.75">0.75×</button><button data-speed="0.85">0.85×</button><button data-speed="1" class="selected">1×</button></div></div></div>
+            <div class="lyrics-card"><div class="lyrics-heading"><div><p class="eyebrow">FOLLOW THE LYRICS</p><h2>Listen & understand</h2></div><div class="lyrics-switch"><button class="selected" data-lyricmode="both">Both</button><button data-lyricmode="en">English</button><button data-lyricmode="es">Spanish</button></div></div><div id="lyricsContent" class="lyrics-content"></div><p class="lyrics-tip">✦ Tap a highlighted expression to explore it.</p></div>
+            <div class="challenge-card"><div class="challenge-head"><div><p class="eyebrow">ACTIVE LISTENING</p><h2>Listening challenge</h2><p>Fill in the missing words as you listen.</p></div><label class="switch"><input type="checkbox" id="challengeToggle"><span class="slider"></span></label></div><div id="challengeArea" class="challenge-area hidden"></div></div>
+          </div>
+          <aside class="lesson-side"><div class="side-card expression-card"><div class="side-card-head"><div><p class="eyebrow">VOCABULARY</p><h3>Expressions to know</h3></div><span class="side-count" id="expressionCount">0</span></div><div id="expressionList"></div></div><div class="side-card"><p class="eyebrow">AFTER THE SONG</p><h3>Make it stick</h3><p class="side-description">Save new expressions to your flashcards and come back to them later.</p><button class="primary-button full" id="addLessonCards">Add expressions to deck</button><button class="secondary-button full" id="openFlashcards">Go to flashcards →</button></div></aside>
+        </div>
+      </section>
+
+
+      <section class="view" id="creatorView">
+        <div class="page-heading creator-heading"><div><p class="eyebrow">CONTENT MANAGEMENT</p><h1>Creator Studio</h1><p>Create lessons once and make them available to every Lyrix challenge.</p></div><button class="secondary-button" id="lockCreatorStudio" type="button">🔒 Lock Studio</button></div>
+        <div class="creator-notice"><strong>How shared publishing works</strong><p>Drafts are saved on this browser. To share a song with everyone on GitHub Pages, export the published catalog and replace <code>content/songs.json</code> in your repository with that file.</p></div>
+        <div class="creator-stats" id="creatorStats"></div>
+        <div class="custom-song-form creator-form">
+          <p class="eyebrow">NEW LESSON</p><h2>Create a song lesson</h2><p class="form-help">Enter lyrics you have permission to use. Each English line should be paired with its Spanish translation using <code>|</code>.</p>
+          <div class="song-form-grid">
+            <label>Song title<input id="creatorTitle" placeholder="Song title"></label><label>Artist<input id="creatorArtist" placeholder="Artist"></label>
+            <label>Level<select id="creatorLevel"><option>B1</option><option>B2</option><option>C1</option></select></label><label>Topic<select id="creatorTopic"><option>Vocabulary</option><option>Idioms</option><option>Phrasal verbs</option><option>Slang</option><option>Grammar</option></select></label>
+            <label class="form-full">YouTube URL<input id="creatorYoutube" placeholder="https://www.youtube.com/watch?v=... (optional)"></label>
+            <label class="form-full">Lyrics — English | Spanish<textarea id="creatorLyrics" rows="8" placeholder="One bilingual line per row"></textarea></label>
+            <label class="form-full">Expressions — phrase | literal | meaning | pronunciation | register | example<textarea id="creatorExpressions" rows="5" placeholder="One expression per row"></textarea></label>
+          </div>
+          <div class="activity-builder"><p class="eyebrow">ACTIVITY BUILDER</p><h3>Activities for this song</h3><p class="form-help">All activities are available. Choose which ones you want to prepare and paste their exercises in the corresponding box.</p>
+            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actLyrics" checked> <strong>Lyrics Challenge</strong></label><textarea id="cfgLyrics" rows="3" placeholder='Example JSON: [{"line":0,"answer":"...","hint":"..."}]'></textarea></div>
+            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actMusicPause"> <strong>Music Pause</strong></label><textarea id="cfgMusicPause" rows="4" placeholder='[{"time":25,"line":"I want to ____","target":"...","choices":["...","...","...","..."],"meaning":"..."}]'></textarea></div>
+            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actListening"> <strong>Listening Challenge</strong></label><textarea id="cfgListening" rows="3" placeholder='[{"line":0,"missing":["word"],"hint":"..."}]'></textarea></div>
+            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actFlashcards"> <strong>Flashcards</strong></label><textarea id="cfgFlashcards" rows="3" placeholder='[{"front":"...","back":"...","pronunciation":"..."}]'></textarea></div>
+            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actVocabulary"> <strong>Vocabulary Practice</strong></label><textarea id="cfgVocabulary" rows="3" placeholder='[{"word":"...","meaning":"...","example":"..."}]'></textarea></div>
+            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actTranslation"> <strong>Translation Practice</strong></label><textarea id="cfgTranslation" rows="3" placeholder='[{"line":0,"translation":"..."}]'></textarea></div>
+          </div>
+          <div class="song-form-actions"><button class="secondary-button" id="creatorExportDrafts">Export drafts</button><button class="primary-button" id="creatorPublish">Save song + activities</button></div>
+        </div>
+        <div class="creator-list-card"><div class="section-heading"><div><p class="eyebrow">CATALOG</p><h2>My published songs</h2></div><button class="primary-button" id="creatorExportCatalog">Export shared catalog JSON</button></div><div id="creatorSongList" class="creator-song-list"></div></div>
+      </section>
+
+      <section class="view" id="challengeView">
+        <div class="page-heading"><p class="eyebrow">LISTEN · REMEMBER · COMPLETE</p><h1>Lyrics challenge</h1><p>Complete the missing words in original practice lines or your own song lessons.</p></div>
+        <div class="standalone-challenge card">
+          <div class="challenge-settings"><label>Choose a song<select id="quizSongSelect"></select></label><label>Difficulty<select id="quizDifficulty"><option value="easy">Easy · 1 missing word</option><option value="medium">Medium · 2 missing words</option><option value="hard">Hard · 3 missing words</option></select></label></div>
+          <div class="quiz-prompt"><span class="quiz-label">YOUR LISTENING TASK</span><p id="quizLine">Choose a song and press New challenge.</p><div class="quiz-translation" id="quizTranslation"></div></div>
+          <div class="quiz-inputs" id="quizInputs"></div><div class="challenge-actions"><button class="primary-button" id="quizCheck">Check answers</button><button class="secondary-button" id="quizHint">Hint</button><button class="secondary-button" id="quizNext">New challenge</button></div><p class="challenge-feedback" id="quizFeedback"></p>
+          <div class="quiz-score-row"><div><span class="quiz-label">YOUR SCORE</span><strong id="quizScore">0</strong></div><div><span class="quiz-label">CORRECT ANSWERS</span><strong id="quizCorrect">0</strong></div><div><span class="quiz-label">ATTEMPTS</span><strong id="quizAttempts">0</strong></div></div>
+        </div>
+      </section>
+
+
+      <section class="view" id="musicpauseView">
+        <div class="page-heading"><p class="eyebrow">LISTEN · PAUSE · THINK</p><h1>Music Pause <span class="brand-dot">♫</span></h1><p>Enjoy the music, then choose the word you heard.</p></div>
+        <div class="musicpause-layout">
+          <div class="musicpause-player card"><div class="musicpause-video"><div id="mpPlayer"></div><div class="mp-fallback" id="mpFallback"><span>♫</span><p>Choose a video and press Start.</p></div></div><div class="mp-song-picker"><label>Choose a video<select id="mpSongSelect"></select></label><button class="primary-button" id="mpStart">▶ Start Music Pause</button></div></div>
+          <div class="musicpause-question card" id="mpQuestionCard"><div class="mp-topline"><span class="quiz-label">LISTENING ROUND</span><span id="mpRound">Ready · 0/4</span></div><div class="mp-progress"><div id="mpProgressFill"></div></div><div id="mpQuestion"><div class="mp-illustration">🎧 ✨</div><h2>Ready to listen?</h2><p>Start the video. When it pauses, choose the missing word from four options.</p></div><div class="mp-options" id="mpOptions"></div><div class="mp-feedback" id="mpFeedback"></div><div class="mp-actions"><button class="secondary-button" id="mpReplay" disabled>↻ Replay segment</button><button class="primary-button" id="mpContinue" disabled>Continue ▶</button></div><div class="mp-scoreline"><span>Score <strong id="mpScore">0</strong></span><span>Correct <strong id="mpCorrect">0</strong></span><span>Streak <strong id="mpStreak">0</strong> ✦</span></div></div>
+        </div>
+        <p class="mp-note">Demo mode: the practice sentences are original samples. The pause points are approximate, so they can be adjusted when a song lesson is configured.</p>
+      </section>
+
+
+      <section class="view" id="flashcardsView"><div class="page-heading"><p class="eyebrow">YOUR PERSONAL VOCABULARY</p><h1>Flashcards</h1><p>Review, remember, and make new expressions part of your English.</p></div><div class="flashcard-toolbar"><div class="deck-tabs"><button class="selected" data-deck="all">All cards</button><button data-deck="review">Review later</button><button data-deck="mastered">Mastered</button></div><button id="exportCards" class="secondary-button">↧ Export deck</button></div><div class="flashcard-stage"><button class="round-nav" id="prevCard" aria-label="Previous card">←</button><div class="flashcard" id="flashcard"><div class="card-top"><span id="cardCategory">EXPRESSION</span><span id="cardPosition">0 / 0</span></div><div class="card-face" id="cardFace"><div class="card-word" id="cardWord">Your deck is empty</div><p class="card-hint" id="cardHint">Add expressions from a lesson.</p></div><div class="card-bottom"><button class="flip-button" id="flipCard">↻ Flip card</button></div></div><button class="round-nav" id="nextCard" aria-label="Next card">→</button></div><div class="flashcard-actions"><button class="review-button" id="markReview">↺ Review later</button><button class="master-button" id="markMastered">✓ I know this</button></div><div class="deck-empty-note" id="deckStatus"></div></section>
+      <footer class="app-footer"><span>ILOVELYRICS <span class="brand-dot">.</span> English through music</span><span>Made for curious minds ♡</span></footer>
+    </main>
+  </div>
+  <div class="studio-gate-backdrop hidden" id="studioGate" role="dialog" aria-modal="true" aria-labelledby="studioGateTitle">
+    <form class="studio-gate-card" id="studioGateForm">
+      <button class="studio-gate-close" type="button" id="studioGateClose" aria-label="Close">×</button>
+      <div class="studio-gate-art" aria-hidden="true">♫ ✦</div>
+      <p class="studio-gate-eyebrow">PRIVATE CREATOR SPACE</p>
+      <h2 id="studioGateTitle">Creator Studio</h2>
+      <p class="studio-gate-subtitle">A little space for creators. Enter the shared access password to continue.</p>
+      <label class="studio-gate-label" for="studioGatePassword">Access password</label>
+      <div class="studio-gate-input-wrap"><input id="studioGatePassword" type="password" autocomplete="off" placeholder="Enter password" required><button type="button" id="studioGateToggle" aria-label="Show password">Show</button></div>
+      <p class="studio-gate-error hidden" id="studioGateError" role="alert">That password doesn't match. Try again.</p>
+      <button class="studio-gate-submit" type="submit">Unlock Creator Studio <span>→</span></button>
+      <p class="studio-gate-footer">Private space for our creative team ♡</p>
+    </form>
+  </div>
+  <div class="expression-modal-backdrop hidden" id="expressionModal"><div class="expression-modal"><button class="modal-close" id="closeModal">×</button><div class="modal-label">EXPRESSION BREAKDOWN</div><h2 id="modalExpression"></h2><div class="modal-pronunciation" id="modalPronunciation"></div><div class="meaning-grid"><div><span>Literal meaning</span><p id="modalLiteral"></p></div><div><span>Real meaning</span><p id="modalMeaning"></p></div></div><div class="modal-register"><span>REGISTER</span><strong id="modalRegister"></strong></div><div class="modal-example"><span>IN CONTEXT</span><p id="modalExample"></p></div><button class="primary-button full" id="saveExpression">＋ Add to flashcards</button></div></div>
+  <script src="script.js"></script>
+</body>
+</html>
