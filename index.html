@@ -4,34 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Learn real English through music with listening challenges, expressions, and flashcards.">
-  <title>We Love Lyrics — Learn English through music</title>
-  <link rel="stylesheet" href="style.css?v=creator-layout-2">
-
-  <style id="creator-studio-layout-fix">
-    /* Scoped Creator Studio layout override: independent of generic label/form rules. */
-    #creatorView .creator-form { display:block; width:100%; min-width:0; overflow:hidden; }
-    #creatorView .creator-form .song-form-grid { display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 18px; align-items:start; width:100%; }
-    #creatorView .creator-form .song-form-grid label { display:flex !important; flex-direction:column; align-items:stretch; gap:7px; min-width:0; width:100%; font-size:12px; font-weight:700; line-height:1.4; }
-    #creatorView .creator-form .song-form-grid .form-full { grid-column:1/-1; }
-    #creatorView .creator-form .song-form-grid input, #creatorView .creator-form .song-form-grid select, #creatorView .creator-form .song-form-grid textarea { display:block !important; width:100% !important; max-width:100%; min-width:0; box-sizing:border-box; border:1px solid var(--line); border-radius:11px; background:var(--surface2); color:var(--text); padding:11px 12px; font:500 13px 'DM Sans',sans-serif; }
-    #creatorView .creator-form .song-form-grid input, #creatorView .creator-form .song-form-grid select { height:43px; }
-    #creatorView .creator-form .song-form-grid textarea { min-height:120px; resize:vertical; line-height:1.55; }
-    #creatorView .creator-form #creatorLyrics { min-height:230px; }
-    #creatorView .creator-form #creatorExpressions { min-height:160px; }
-    #creatorView .creator-form .activity-builder { display:block; width:100%; min-width:0; box-sizing:border-box; margin:24px 0 18px; padding:clamp(14px,2vw,22px); border-radius:18px; }
-    #creatorView .creator-form .activity-config { display:grid; grid-template-columns:minmax(0,1fr); gap:10px; width:100%; min-width:0; box-sizing:border-box; padding:15px; margin:12px 0; }
-    #creatorView .creator-form .activity-config .activity-toggle { display:flex !important; flex-direction:row; align-items:center; gap:10px; width:100%; }
-    #creatorView .creator-form .activity-config textarea { display:block !important; width:100% !important; max-width:100%; min-width:0; box-sizing:border-box; min-height:100px; }
-    #creatorView .creator-form .song-form-actions { display:flex; justify-content:flex-end; align-items:center; flex-wrap:wrap; gap:10px; width:100%; }
-    #creatorView .creator-list-card { display:block; width:100%; min-width:0; box-sizing:border-box; overflow:hidden; }
-    @media(max-width:760px){ #creatorView .creator-form .song-form-grid { grid-template-columns:minmax(0,1fr) !important; } #creatorView .creator-form .song-form-grid .form-full { grid-column:auto; } }
-  </style>
-
+  <title>Ilovelyrics — Learn English through music</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#home"><span class="brand-mark">♫</span><span>We Love Lyrics<span class="brand-dot">.</span></span></a>
+      <a class="brand" href="#home"><span class="brand-mark">♫</span><span>Ilovelyrics<span class="brand-dot">.</span></span></a>
       <div class="nav-label">STUDY SPACE</div>
       <nav class="nav-links">
         <button class="nav-link active" data-view="home"><span>⌂</span> Home</button>
@@ -49,7 +28,7 @@
 
     <main class="main-content">
       <header class="topbar">
-        <div class="mobile-brand"><span class="brand-mark">♫</span> We Love Lyrics<span class="brand-dot">.</span></div>
+        <div class="mobile-brand"><span class="brand-mark">♫</span> Ilovelyrics<span class="brand-dot">.</span></div>
         <div class="top-progress"><span class="top-progress-label">YOUR PROGRESS</span><div class="mini-track"><div id="topProgressFill"></div></div><span id="topProgressText">0% complete</span></div>
         <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">☼</button>
       </header>
@@ -121,12 +100,12 @@ I wish we could go back | Ojalá pudiéramos volver"></textarea></label>
             <label class="form-full">Expressions — phrase | literal | meaning | pronunciation | register | example<textarea id="creatorExpressions" rows="5" placeholder="One expression per row"></textarea></label>
           </div>
           <div class="activity-builder"><p class="eyebrow">ACTIVITY BUILDER</p><h3>Activities for this song</h3><p class="form-help">All activities are available. Choose which ones you want to prepare and paste their exercises in the corresponding box.</p>
-            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actLyrics" checked> <strong>Lyrics Challenge</strong></label><textarea id="cfgLyrics" rows="3" placeholder="Paste Lyrics Challenge exercises here (JSON array)…"></textarea><p class="activity-example"><strong>Example:</strong> <code>[{"line":0,"answer":"star","hint":"A word in the sky"}]</code></p></div>
-            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actMusicPause"> <strong>Music Pause</strong></label><textarea id="cfgMusicPause" rows="4" placeholder="Paste Music Pause exercises here (JSON array)…"></textarea><p class="activity-example"><strong>Example:</strong> <code>[{"time":25,"line":"I want to ____","target":"stay","choices":["stay","go","run","walk"],"meaning":"quedarse"}]</code></p></div>
-            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actListening"> <strong>Listening Challenge</strong></label><textarea id="cfgListening" rows="3" placeholder="Paste Listening Challenge exercises here…"></textarea><p class="activity-example"><strong>Example:</strong> <code>[{"line":0,"missing":["star"],"hint":"A word in the sky"}]</code></p></div>
-            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actFlashcards"> <strong>Flashcards</strong></label><textarea id="cfgFlashcards" rows="3" placeholder="Paste flashcards here…"></textarea><p class="activity-example"><strong>Example:</strong> <code>[{"front":"twinkle","back":"brillar","pronunciation":"/ˈtwɪŋkəl/"}]</code></p></div>
-            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actVocabulary"> <strong>Vocabulary Practice</strong></label><textarea id="cfgVocabulary" rows="3" placeholder="Paste vocabulary exercises here…"></textarea><p class="activity-example"><strong>Example:</strong> <code>[{"word":"star","meaning":"estrella","example":"I see a star."}]</code></p></div>
-            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actTranslation"> <strong>Translation Practice</strong></label><textarea id="cfgTranslation" rows="3" placeholder="Paste translation exercises here…"></textarea><p class="activity-example"><strong>Example:</strong> <code>[{"line":0,"translation":"Brilla, pequeña estrella."}]</code></p></div>
+            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actLyrics" checked> <strong>Lyrics Challenge</strong></label><textarea id="cfgLyrics" rows="3" placeholder='Example JSON: [{"line":0,"answer":"...","hint":"..."}]'></textarea></div>
+            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actMusicPause"> <strong>Music Pause</strong></label><textarea id="cfgMusicPause" rows="4" placeholder='[{"time":25,"line":"I want to ____","target":"...","choices":["...","...","...","..."],"meaning":"..."}]'></textarea></div>
+            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actListening"> <strong>Listening Challenge</strong></label><textarea id="cfgListening" rows="3" placeholder='[{"line":0,"missing":["word"],"hint":"..."}]'></textarea></div>
+            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actFlashcards"> <strong>Flashcards</strong></label><textarea id="cfgFlashcards" rows="3" placeholder='[{"front":"...","back":"...","pronunciation":"..."}]'></textarea></div>
+            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actVocabulary"> <strong>Vocabulary Practice</strong></label><textarea id="cfgVocabulary" rows="3" placeholder='[{"word":"...","meaning":"...","example":"..."}]'></textarea></div>
+            <div class="activity-config"><label class="activity-toggle"><input type="checkbox" id="actTranslation"> <strong>Translation Practice</strong></label><textarea id="cfgTranslation" rows="3" placeholder='[{"line":0,"translation":"..."}]'></textarea></div>
           </div>
           <div class="song-form-actions"><button class="secondary-button" id="creatorExportDrafts">Export drafts</button><button class="primary-button" id="creatorPublish">Save song + activities</button></div>
         </div>
@@ -155,7 +134,7 @@ I wish we could go back | Ojalá pudiéramos volver"></textarea></label>
 
 
       <section class="view" id="flashcardsView"><div class="page-heading"><p class="eyebrow">YOUR PERSONAL VOCABULARY</p><h1>Flashcards</h1><p>Review, remember, and make new expressions part of your English.</p></div><div class="flashcard-toolbar"><div class="deck-tabs"><button class="selected" data-deck="all">All cards</button><button data-deck="review">Review later</button><button data-deck="mastered">Mastered</button></div><button id="exportCards" class="secondary-button">↧ Export deck</button></div><div class="flashcard-stage"><button class="round-nav" id="prevCard" aria-label="Previous card">←</button><div class="flashcard" id="flashcard"><div class="card-top"><span id="cardCategory">EXPRESSION</span><span id="cardPosition">0 / 0</span></div><div class="card-face" id="cardFace"><div class="card-word" id="cardWord">Your deck is empty</div><p class="card-hint" id="cardHint">Add expressions from a lesson.</p></div><div class="card-bottom"><button class="flip-button" id="flipCard">↻ Flip card</button></div></div><button class="round-nav" id="nextCard" aria-label="Next card">→</button></div><div class="flashcard-actions"><button class="review-button" id="markReview">↺ Review later</button><button class="master-button" id="markMastered">✓ I know this</button></div><div class="deck-empty-note" id="deckStatus"></div></section>
-      <footer class="app-footer"><span>WE LOVE LYRICS <span class="brand-dot">.</span> English through music</span><span>Made for curious minds ♡</span></footer>
+      <footer class="app-footer"><span>ILOVELYRICS <span class="brand-dot">.</span> English through music</span><span>Made for curious minds ♡</span></footer>
     </main>
   </div>
   <div class="studio-gate-backdrop hidden" id="studioGate" role="dialog" aria-modal="true" aria-labelledby="studioGateTitle">
